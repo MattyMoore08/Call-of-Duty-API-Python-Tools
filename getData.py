@@ -1,13 +1,5 @@
 import pandas as pd
-import numpy as np
-import pandas_datareader as web
-import matplotlib.pyplot as plt
-import matplotlib
-import seaborn as sns
-from datetime import datetime
-import matplotlib.ticker as mtick
 import requests
-import json
 import config
 
 response = requests.request("GET", config.myUrl, headers=config.headers, data = config.payload)
@@ -86,6 +78,3 @@ usernames = [x[:x.find("#")] if x.find("#") > -1 else x for x in usernames]
 ltA.insert(loc=0, column='usernames', value=pd.Series(usernames))
 ltM.insert(loc=0, column='usernames', value=pd.Series(usernames))
 ltW.insert(loc=0, column='usernames', value=pd.Series(usernames))
-
-
-print(ltW)
