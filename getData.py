@@ -80,7 +80,7 @@ for i in flData:
     ltM = ltM.append(pd.Series(modeList, index=ltM.columns), ignore_index=True)
     ltW = ltW.append(pd.Series(weaponList, index=ltW.columns), ignore_index=True)
 
-# removes # Activision Account Identifier
+# removes # Activision Account Identifier:x
 usernames = [x[:x.find("#")] if x.find("#") > -1 else x for x in usernames]
 
 ltA.insert(loc=0, column='usernames', value=pd.Series(usernames))
