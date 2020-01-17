@@ -52,14 +52,12 @@ weaponClassList = []
 for key in weaponClassDict:
     for wp in weaponClassDict[key]:
         weaponClassList.append(wp)
-print(weaponClassList)
 n = 0
 for wc in myData['lifetime']['itemData'].keys():
     if not wc == 'tacticals':
         for key in myData['lifetime']['itemData'][wc]:
-            print(key, weaponClassList[n])
             df = pd.DataFrame(myData['lifetime']['itemData'][wc][key]['properties'].items()).transpose()
-            df.columns = [key + j for j in df.iloc[0]]
+            df.columns = [weaponClassList[n] + j for j in df.iloc[0]]
             df = df.drop([0])
             df = df.reset_index(drop=True)
             ltW = pd.concat([ltW, df], sort=False, axis=1)
@@ -82,6 +80,7 @@ for i in flData:
     ltM = ltM.append(pd.Series(modeList, index=ltM.columns), ignore_index=True)
     ltW = ltW.append(pd.Series(weaponList, index=ltW.columns), ignore_index=True)
 
+# removes # Activision Account Identifier
 usernames = [x[:x.find("#")] if x.find("#") > -1 else x for x in usernames]
 
 ltA.insert(loc=0, column='usernames', value=pd.Series(usernames))
